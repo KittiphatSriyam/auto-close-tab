@@ -32,7 +32,6 @@ function main (){
                 if (oldToken.tab[i].url.toLowerCase() == url.toLowerCase()) {
                     oldToken.tab[i].exp = futureDate
                     setTabActive(oldToken, tokenArray, futureDate, url , false)
-                    return
                 }
             }
        
