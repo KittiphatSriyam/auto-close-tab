@@ -25,7 +25,7 @@ function setTabActive(oldToken = initToken, tokenArray = initToken, futureDate, 
 
 function main() {
 
-    let url = window.location.href
+    let url = window.location.pathname
 
     const currentDate = new Date();
     const futureDate = new Date(currentDate.getTime() + minutesToAdd * 60000).toLocaleString();
