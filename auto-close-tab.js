@@ -56,6 +56,6 @@ function main() {
 
 main()
 
-setTimeout(()=>{
-    main()
-}, minutesToAdd * (1000 * 60))
+//setTimeout(()=>{
+//    main()
+//}, minutesToAdd * (1000 * 60))
