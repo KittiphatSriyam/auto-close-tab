@@ -9,6 +9,8 @@ let tokenArray = {
     tab: []
 }
 
+const minutesToAdd = 5;
+
 function setTabActive(oldToken = initToken, tokenArray = initToken , futureDate, url, timeout = false) {
     tokenArray = { tab: [...oldToken.tab] }
     if (!timeout) {
@@ -21,7 +23,6 @@ function main() {
 
     let url = window.location.href
 
-    const minutesToAdd = 5;
     const currentDate = new Date();
     const futureDate = new Date(currentDate.getTime() + minutesToAdd * 60000).toLocaleString();
 
@@ -52,4 +53,9 @@ function main() {
 
     setTabActive(oldToken, tokenArray, futureDate, url, false)
 }
+
 main()
+
+setTimeout(()=>{
+    main()
+}, minutesToAdd * (1000 * 60))
