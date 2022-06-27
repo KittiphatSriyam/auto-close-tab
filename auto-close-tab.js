@@ -33,7 +33,11 @@ function main() {
         if (oldToken.tab.length > 0) {
             for (const i in oldToken.tab) {
                 if (oldToken.tab[i].url.trim().toLowerCase() == url.trim().toLowerCase()) {
-                    if(new Date(oldToken.tab[i].exp) < new Date()){
+                    if(new Date(oldToken.tab[i].exp) > new Date()){
+                        oldToken.tab[i].exp = futureDate
+                        setTabActive(initToken, oldToken, futureDate, url, false)
+                        return false
+                    } else{
                         delete oldToken.tab[i]
                         setTabActive(initToken, oldToken, futureDate, url, true)
                         alert('Session Time Out.');
@@ -42,15 +46,7 @@ function main() {
                     }           
                 }
             }
-            for (const i in oldToken.tab) {
-                if (oldToken.tab[i].url.trim().toLowerCase() == url.trim().toLowerCase()) {
-                    if(new Date(oldToken.tab[i].exp) > new Date()){
-                        oldToken.tab[i].exp = futureDate
-                    }          
-                }
-            }
-            setTabActive(initToken, oldToken, futureDate, url, false)
-            return
+
         }
     }
 
