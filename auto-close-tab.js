@@ -21,7 +21,7 @@ function main() {
 
     let url = window.location.href
 
-    const minutesToAdd = 1;
+    const minutesToAdd = 5;
     const currentDate = new Date();
     const futureDate = new Date(currentDate.getTime() + minutesToAdd * 60000).toLocaleString();
 
@@ -33,11 +33,7 @@ function main() {
         if (oldToken.tab.length > 0) {
             for (const i in oldToken.tab) {
                 if (oldToken.tab[i].url.trim().toLowerCase() == url.trim().toLowerCase()) {
-                    if(new Date(oldToken.tab[i].exp) > new Date()){
-                        oldToken.tab[i].exp = futureDate
-                        setTabActive(initToken, oldToken, futureDate, url, false)
-                        return false
-                    } else{
+                    if(new Date(oldToken.tab[i].exp) < new Date()){
                         delete oldToken.tab[i]
                         setTabActive(initToken, oldToken, futureDate, url, true)
                         alert('Session Time Out.');
@@ -46,7 +42,15 @@ function main() {
                     }           
                 }
             }
-
+            for (const i in oldToken.tab) {
+                if (oldToken.tab[i].url.trim().toLowerCase() == url.trim().toLowerCase()) {
+                    if(new Date(oldToken.tab[i].exp) > new Date()){
+                        oldToken.tab[i].exp = futureDate
+                    }          
+                }
+            }
+            setTabActive(initToken, oldToken, futureDate, url, false)
+            return
         }
     }
 
