@@ -15,7 +15,7 @@ let tokenArray = {
 const minutesToAdd = 1;
 
 function setTabActive(oldToken = initToken, tokenArray = initToken, futureDate, url, addArray = false) {
-    tokenArray = { tab: [...oldToken.tab] }
+    tokenArray = { tab: [...oldToken.tab], showTimeOut: oldToken.showTimeOut }
     if (!addArray) {
         tokenArray.tab.push({ exp: futureDate, url })
         tokenArray.showTimeOut = true
